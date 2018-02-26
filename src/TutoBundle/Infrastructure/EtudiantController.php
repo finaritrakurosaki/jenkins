@@ -59,22 +59,6 @@ class EtudiantController extends BaseController
         }
         return $this->render('TutoBundle:Etudiant:update.html.twig',array('form'=> $form->createView()));
     }
-
-    /**
-     * @Route("/admin/deleteEtudiant/{id}",name="deleteEtudiant")
-     */
-    public function deleteEtudiant(etudiant $etudiant)
-    {
-
-        try {
-            $this->remove($etudiant);
-        }
-        catch(Exception $e){
-            echo $e->getMessage();
-        }
-            return $this->redirectToRoute('listEtudiant');
-    }
-
     /**
      * @Route("/user/noteEtudiant/{id}",name="noteEtudiant")
      */

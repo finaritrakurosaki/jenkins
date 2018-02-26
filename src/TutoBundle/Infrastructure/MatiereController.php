@@ -63,19 +63,4 @@ class MatiereController extends BaseController
             'matieres'=>$matieres
         ));
     }
-
-    /**
-     * @Route("/admin/deleteMatiere{id}",name="deleteMatiere")
-     */
-    public function deleteMatiere(matiere $matiere)
-    {
-        try
-        {
-            $this->remove($matiere);
-        }
-        catch(Exception $e){
-            echo $e->getMessage();
-        }
-        return $this->redirectToRoute('listMatiere');
-    }
 }
