@@ -15,7 +15,7 @@ class EtudiantController extends BaseController
     /**
      * @Route("/admin/createEtudiant",name="createEtudiant")
      */
-    public function CreateEtudiant(Request $request)
+    public function createEtudiant(Request $request)
     {
         $etudiant = new etudiant();
         $form = $this->createForm(etudiantType::class,$etudiant);
@@ -34,7 +34,7 @@ class EtudiantController extends BaseController
     /**
      * @Route("/user/listEtudiant",name="listEtudiant")
      */
-    public function ListEtudiant()
+    public function listEtudiant()
     {
         $etudiants= $this->getDoctrine()->getRepository(etudiant::class)->findAll();
         return $this->render('TutoBundle:Etudiant:list.html.twig', array(
@@ -45,7 +45,7 @@ class EtudiantController extends BaseController
     /**
      * @Route("/admin/updateEtudiant/{id}",name="updateEtudiant")
      */
-    public function UpdateEtudiant(Request $request, etudiant $etudiant)
+    public function updateEtudiant(Request $request, etudiant $etudiant)
     {
         $form = $this->createForm(etudiantEditType::class,$etudiant);
         $form->handleRequest($request);
@@ -63,7 +63,7 @@ class EtudiantController extends BaseController
     /**
      * @Route("/admin/deleteEtudiant/{id}",name="deleteEtudiant")
      */
-    public function DeleteEtudiant(etudiant $etudiant)
+    public function deleteEtudiant(etudiant $etudiant)
     {
 
         try {
@@ -78,7 +78,7 @@ class EtudiantController extends BaseController
     /**
      * @Route("/user/noteEtudiant/{id}",name="noteEtudiant")
      */
-    public function NoteEtudiant($id)
+    public function noteEtudiant($id)
     {
         return $this->forward('TutoBundle\Infrastructure\NoteController::FindQB',array(
                               'id'=>$id
@@ -87,7 +87,7 @@ class EtudiantController extends BaseController
     /**
      * @Route("/user/detailsEtudiant/{id}",name="detailsEtudiant")
      */
-    public function DetailsEtudiant(etudiant $etudiant)
+    public function detailsEtudiant(etudiant $etudiant)
     {
         return $this->render('TutoBundle:Etudiant:details.html.twig',array('etudiant'=> $etudiant));
     }

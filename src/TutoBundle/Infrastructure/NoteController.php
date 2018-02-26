@@ -33,7 +33,7 @@ class NoteController extends BaseController
     /**
      * @Route("/user/FindQ/{id}")
      */
-    public function FindQB(etudiant $etudiant)
+    public function findQB(etudiant $etudiant)
     {
 
         $notes = $this->getDoctrine()->getRepository(note::class)->FindQueribuilder($etudiant->getId());
@@ -46,7 +46,7 @@ class NoteController extends BaseController
     /**
      * @Route("/user/FindDQL",name="findNote")
      */
-    public function FindDQL(Request $request)
+    public function findDQL(Request $request)
     {
         $result = $this->getDoctrine()->getRepository(note::class)->FindDQL((int)$request->request->get('number'));
         print_r($result);

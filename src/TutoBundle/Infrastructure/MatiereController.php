@@ -15,7 +15,7 @@ class MatiereController extends BaseController
     /**
      * @Route("/admin/createMatiere",name="createMatiere")
      */
-    public function CreateMatiere(Request $request)
+    public function createMatiere(Request $request)
     {
         $matiere = new matiere();
         $form = $this->createForm(matiereType::class,$matiere);
@@ -36,7 +36,7 @@ class MatiereController extends BaseController
     /**
      * @Route("/admin/updateMatiere/{id}",name="updateMatiere")
      */
-    public function UpdateMatiere(Request $request, matiere $matiere)
+    public function updateMatiere(Request $request, matiere $matiere)
     {
         $form = $this->createForm(matiereEditType::class,$matiere);
         $form->handleRequest($request);
@@ -56,7 +56,7 @@ class MatiereController extends BaseController
     /**
      * @Route("/user/listMatiere",name="listMatiere")
      */
-    public function ListMatiere()
+    public function listMatiere()
     {
         $matieres = $this->getDoctrine()->getRepository(matiere::class)->findAll();
         return $this->render('TutoBundle:Matiere:list_matiere.html.twig', array(
@@ -67,7 +67,7 @@ class MatiereController extends BaseController
     /**
      * @Route("/admin/deleteMatiere{id}",name="deleteMatiere")
      */
-    public function DeleteMatiere(matiere $matiere)
+    public function deleteMatiere(matiere $matiere)
     {
         try
         {

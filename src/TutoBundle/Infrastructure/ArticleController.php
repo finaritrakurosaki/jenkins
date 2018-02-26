@@ -58,7 +58,7 @@ class ArticleController extends BaseController
     /**
      * @Route("/user/listArticle",name="listArticle")
      */
-    public function ListArticle()
+    public function listArticle()
     {
         $articles= $this->getDoctrine()->getRepository(article::class)->findAll();
         return $this->render('TutoBundle:Article:list.html.twig', array(
