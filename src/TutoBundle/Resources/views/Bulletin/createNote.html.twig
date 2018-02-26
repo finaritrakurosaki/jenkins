@@ -1,0 +1,16 @@
+{% extends "::base.html.twig" %}
+{% block body %}
+    <h1>Create Note:</h1> <br>
+    {% for message in app.session.flashBag.get('notice') %}
+       <div class="alert alert-success">
+        {{ message }}
+       </div>
+    {% endfor %}
+    {{ form_start(form) }}
+<div class="form-group">
+{{ form_widget(form) }}
+</div>
+    <input class="btn btn-info" type="submit" value="Create" />
+    {{ form_end(form) }}
+{% endblock %}
+

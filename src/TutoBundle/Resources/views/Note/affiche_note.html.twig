@@ -1,0 +1,15 @@
+{% extends "::base.html.twig" %}
+{% block title %}TutoBundle:NOte{% endblock %}
+{% block body %}
+ <h3>Etudiant :</h3> {{ etudiant.nom }}  {{ etudiant.prenom }} :<br>
+    <form action="{{ path(app.session.get('url')) }}" method="get">
+    {% if notes %}
+        {% for note in notes  %}
+            matiere : {{ note.matiere.nomMatiere }} : {{ note.note }}<br>
+        {% endfor %}
+     {% else %}
+        cet etudiant n'a pas encore de note
+    {% endif %}
+    <input type="submit" value="preview"/>
+    </form>
+{% endblock %}

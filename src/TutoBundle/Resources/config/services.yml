@@ -1,0 +1,4 @@
+services:
+    tuto.crud:
+        class: TutoBundle\Service\crudService
+        arguments: [ "@doctrine.orm.entity_manager",%secret% ]

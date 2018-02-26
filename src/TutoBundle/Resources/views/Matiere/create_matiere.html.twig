@@ -1,0 +1,27 @@
+{% extends "::base.html.twig" %}
+{% block title %}TutoBundle:Matiere:Create{% endblock %}
+{% block body %}
+    <h1>Creer Matiere</h1>
+    {% block content %}
+        {% for message in app.session.flashBag.get('notice') %}
+            <div class="alert alert-success">
+                {{ message }}
+            </div>
+        {% endfor %}
+        {{ form_start(form) }}
+        {% if form_errors(form.nomMatiere) %}
+            <div class="alert alert-danger">
+                {{ form_errors(form.nomMatiere) }}
+            </div>
+        {% endif %}
+        <div class="form-group">
+            {{ form_label(form.nomMatiere) }}
+            {{ form_widget(form.nomMatiere, {'attr': {'class': 'form-control'}}) }}
+        </div>
+        <div class="form-group">
+            {{ form_row(form.create, {'attr': {'class': 'btn btn-info'}}) }}
+        </div>
+        {{ form_end(form) }}
+    {% endblock %}
+{% endblock %}
+

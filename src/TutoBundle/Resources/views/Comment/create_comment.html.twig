@@ -1,0 +1,24 @@
+{% extends "::base.html.twig" %}
+
+{% block title %}TutoBundle:Comment{% endblock %}
+
+{% block body %}
+    {% block content %}
+        <fieldset>
+        <legend>Comments</legend><br>
+           <div class="alert alert-primary">{{ publication.user }} : {{ publication.contents }}</div><br>
+             {% for comment in publication.comments %}
+                 {{ comment.user }} :{{ comment.content }}<br>
+                 {{ comment.datetime|date('Y-m-d') }}<br>
+             {% endfor %}
+        {{ form_start(form)}}
+         <div class="form-group">
+           {{ form_widget(form.content, {'attr': {'class': 'form-control'}}) }}
+         </div>
+            {{ form_row(form.comment, {'attr': {'class': 'btn btn-info'}}) }}
+        {{ form_end(form) }}
+
+        </fieldset>
+    {% endblock %}
+{% endblock %}
+

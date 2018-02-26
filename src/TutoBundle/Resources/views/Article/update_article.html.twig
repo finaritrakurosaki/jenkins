@@ -1,0 +1,24 @@
+{% extends "::base.html.twig" %}
+{% block title %}TutoBundle:Article{% endblock %}
+{% block body %}
+    <h1>{{ title }}</h1>
+    {% block content %}
+        {% for message in app.session.flashBag.get('notice') %}
+            <div class="alert alert-success">
+                {{ message }}
+            </div>
+        {% endfor %}
+        {{ form_start(form) }}
+        <div class="form-group">
+            {{ form_label(form.description)}}
+            {{ form_widget(form.description, {'attr': {'class': 'form-control'}}) }}
+        </div>
+        <div class="form-group">
+            {{ form_label(form.imageUrl)}}
+            {{ form_widget(form.imageUrl, {'attr': {'class': 'form-control'}}) }}
+        </div>
+        {{ form_row(form.edit, {'attr': {'class': 'btn btn-info'}}) }}
+        {{ form_end(form) }}
+    {% endblock %}
+{% endblock %}
+

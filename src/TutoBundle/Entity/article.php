@@ -1,0 +1,187 @@
+<?php
+
+namespace TutoBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+
+/**
+ * article
+ *
+ * @ORM\Table(name="article")
+ * @ORM\Entity(repositoryClass="TutoBundle\Repository\articleRepository")
+ * @ORM\HasLifecycleCallbacks()
+ */
+class article
+{
+    /**
+     * @var int
+     *
+     * @ORM\Column(name="id", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="AUTO")
+     */
+    private $id;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="description", type="string", length=50)
+     */
+    private $description;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="image_url", type="string", length=250)
+     */
+    private $imageUrl;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="datetime", type="datetime")
+     */
+    private $datetime;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="datetime_edition", type="datetime",nullable=true)
+     */
+    private $datetimeEdition;
+
+    /**
+     * article constructor.
+     * @param \DateTime $datetime
+     */
+    public function __construct()
+    {
+        $this->datetime = new \DateTime();
+    }
+
+
+    /**
+     * Get id
+     *
+     * @return int
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * Set description
+     *
+     * @param string $description
+     *
+     * @return article
+     */
+    public function setDescription($description)
+    {
+        $this->description = $description;
+
+        return $this;
+    }
+
+    /**
+     * Get description
+     *
+     * @return string
+     */
+    public function getDescription()
+    {
+        return $this->description;
+    }
+
+    /**
+     * Set imageUrl
+     *
+     * @param string $imageUrl
+     *
+     * @return article
+     */
+    public function setImageUrl($imageUrl)
+    {
+        $this->imageUrl = $imageUrl;
+
+        return $this;
+    }
+
+    /**
+     * Get imageUrl
+     *
+     * @return string
+     */
+    public function getImage()
+    {
+        return $this->imageUrl;
+    }
+
+    /**
+     * Set datetime
+     *
+     * @param \DateTime $datetime
+     *
+     * @return article
+     */
+    public function setDatetime($datetime)
+    {
+        $this->datetime = $datetime;
+
+        return $this;
+    }
+
+    /**
+     * Get datetime
+     *
+     * @return \DateTime
+     */
+    public function getDatetime()
+    {
+        return $this->datetime;
+    }
+
+    /**
+     * Get imageUrl
+     *
+     * @return string
+     */
+    public function getImageUrl()
+    {
+        return $this->imageUrl;
+    }
+
+    /**
+     * @ORM\PreUpdate()
+     */
+    public function updateDatetime()
+    {
+        $this->setDatetimeEdition(new \DateTime());
+    }
+
+    /**
+     * Set datetimeEdition
+     *
+     * @param \DateTime $datetimeEdition
+     *
+     * @return article
+     */
+    public function setDatetimeEdition($datetimeEdition)
+    {
+        $this->datetimeEdition = $datetimeEdition;
+
+        return $this;
+    }
+
+    /**
+     * Get datetimeEdition
+     *
+     * @return \DateTime
+     */
+    public function getDatetimeEdition()
+    {
+        return $this->datetimeEdition;
+    }
+}

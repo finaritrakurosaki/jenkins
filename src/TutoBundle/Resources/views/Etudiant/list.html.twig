@@ -1,0 +1,25 @@
+{% extends "::base.html.twig" %}
+
+{% block title %}TutoBundle:Etudiant:List{% endblock %}
+
+{% block body %}
+    <h1>List Student</h1>
+    {% block content %}
+        <table class="table">
+            {% for etudiant in etudiants %}
+                <tr>
+                    <td class="table-info">{{ etudiant.nom }}</td>
+                    <div class="btn-group">
+                        {% if is_granted("ROLE_ADMIN") %}
+                            <td>|<a class="btn btn-light" href="{{path('updateEtudiant',{'id':etudiant.id})}}">Update</a></td>
+                        {%endif%}
+                        <td>| <a class="btn btn-light" href="{{path('noteEtudiant',{'id':etudiant.id})}}">Note</a></td>
+                        <td>| <a class="btn btn-light" href="{{path('detailsEtudiant',{'id':etudiant.id})}}">Details</a></td>
+                    </div>
+                </tr>
+            {% endfor %}
+        </table>
+        {{ app.session.set('url', 'listEtudiant') }}
+    {% endblock %}
+{% endblock %}
+

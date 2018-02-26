@@ -1,0 +1,20 @@
+{% extends "::base.html.twig" %}
+
+{% block title %}TutoBundle:Article:List{% endblock %}
+
+{% block body %}
+    <h1>List Article</h1>
+    {% block content %}
+        <table class="table">
+            {% for article in articles %}
+                <tr>
+                    <td class="table-info">{{ article.description }}</td>
+                    <div class="btn-group">
+                            <td>|<a class="btn btn-light" href="{{path('updateArticle',{'id':article.id})}}">Update</a></td>
+                    </div>
+                </tr>
+            {% endfor %}
+        </table>
+    {% endblock %}
+{% endblock %}
+

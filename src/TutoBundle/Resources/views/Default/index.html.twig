@@ -1,0 +1,27 @@
+{% extends "::base.html.twig" %}
+{% block body %}
+    <div class="container">
+        <fieldset>
+        <legend>Recherche Note</legend><br>
+            {{ form_start(form)}}
+            {{ form_widget(form) }}
+            {{ form_end(form) }}
+        </fieldset>
+        <br>
+        <fieldset>
+            {% if articles %}
+                <legend>Article de l'admin</legend><br>
+                {% for article in articles %}
+                    <h3>Description</h3>{{ article.description }}<br>
+                    <h3>Date de creation :</h3>{{ article.datetime|date('Y-m-d H:i:s') }}<br>
+                    {% if  article.datetimeEdition  %}
+                        <h3>Date de modification :</h3>{{ article.datetimeEdition|date('Y-m-d H:i:s') }}<br>
+                    {% endif %}
+                    <img src="{{ article.imageUrl }}" ><br>
+                {% endfor %}
+            {% endif %}
+
+        </fieldset>
+
+    </div>
+{% endblock %}

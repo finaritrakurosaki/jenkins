@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- Bootstrap CSS -->
+    <title>{% block title %}Welcome!{% endblock %}</title>
+    {% block stylesheets %}{% endblock %}
+    <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    {% block nav %}
+        <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
+            <!-- logo -->
+            <a class="navbar-brand" href="#"></a>
+            <!-- Links -->
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item" ><a class="nav-link" href="{{ path('base')}}"> ACCUEIL</a></li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
+                        ETUDIANT
+                    </a>
+                    <div class="dropdown-menu">
+                        {% if is_granted("ROLE_ADMIN") %}
+                            <a class="dropdown-item" href="{{ path('createEtudiant')}}">Creer</a>
+                        {%endif%}
+                        <a class="dropdown-item" href="{{ path('listEtudiant')}}">Listes</a>
+                    </div>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
+                        MATIERE
+                    </a>
+                    <div class="dropdown-menu">
+                        {% if is_granted("ROLE_ADMIN") %}
+                            <a class="dropdown-item" href="{{ path('createMatiere')}}">Creer</a>
+                        {%endif%}
+                        <a class="dropdown-item" href="{{ path('listMatiere')}}">Listes</a>
+                    </div>
+                </li>
+                {% if is_granted("ROLE_ADMIN") %}
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
+                            NOTE
+                        </a>
+                        <div class="dropdown-menu">
+                            <a class="dropdown-item" href="{{ path('createNote')}}">Creer</a>
+                        </div>
+                    </li>
+                {%endif%}
+                <li class="nav-item" ><a class="nav-link" href="{{ path('forum')}}"> FORUM</a></li>
+                {% if is_granted("ROLE_ADMIN") %}
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
+                            ARTICLE
+                        </a>
+                        <div class="dropdown-menu">
+                            <a class="dropdown-item" href="{{ path('createArticle')}}">Creer</a>
+                            <a class="dropdown-item" href="{{ path('listArticle')}}">Listes</a>
+                        </div>
+                    </li>
+                {%endif%}
+            </ul>
+            <!-- link -->
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item" ><a class="nav-link" href="{{ url('base') }}register"> S'INSCRIRE</a></li>
+                {% if is_granted("IS_AUTHENTICATED_FULLY") %}
+                    <li class="nav-item" ><a class="nav-link" href="{{ url('base') }}logout"> SE DECONNECTER</a></li>
+                {% else %}
+                    <li class="nav-item" ><a class="nav-link" href="{{ url('base') }}login"> SE CONNECTER</a></li>
+                {%endif%}
+            </ul>
+        </nav>
+    {% endblock %}
+    <style>
+        /* Stackoverflow preview fix, please ignore */
+        .navbar-nav {
+            flex-direction: row;
+        }
+
+        .nav-link {
+            padding-right: .5rem !important;
+            padding-left: .5rem !important;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <div class="row">
+        <div class="col-xs-12">
+            {% block body %}{% endblock %}
+            {% block javascripts %}{% endblock %}
+        </div>
+    </div>
+</div>
+</body>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+</html>

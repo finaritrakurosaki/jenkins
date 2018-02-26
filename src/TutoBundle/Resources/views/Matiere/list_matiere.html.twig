@@ -1,0 +1,22 @@
+{% extends "::base.html.twig" %}
+
+{% block title %}TutoBundle:Matiere:List{% endblock %}
+
+{% block body %}
+    <h1>Liste Matiere</h1>
+    {% block content %}
+        <table class="table">
+            {% for matiere in matieres %}
+                <tr>
+                    <td class="table-info">{{ matiere.nomMatiere }}</td>
+                    {% if is_granted("ROLE_ADMIN") %}
+                        <div class="btn-group">
+                            <td>|<a class="btn btn-light" href="{{path('updateMatiere',{'id':matiere.id})}}">Modifier</a></td>
+                        </div>
+                    {%endif%}
+                </tr>
+            {% endfor %}
+        </table>
+    {% endblock %}
+{% endblock %}
+

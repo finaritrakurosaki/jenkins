@@ -1,0 +1,27 @@
+{% extends "::base.html.twig" %}
+
+{% block title %}TutoBundle:Publication{% endblock %}
+
+{% block body %}
+    <h1>Les publications</h1>
+    {% block content %}
+        <fieldset>
+        <legend>Publier</legend><br>
+        {{ form_start(form)}}
+        <div class="form-group">
+           {{ form_row(form.contenu, {'attr': {'class': 'form-control'}}) }}
+        </div>
+            {{ form_row(form.publish, {'attr': {'class': 'btn btn-info'}}) }}
+        {{ form_end(form) }}
+        </fieldset>
+        <br>
+        {% if publications %}
+            {% for publication in publications %}
+                  {{ publication.user }} : {{ publication.contents }}<br>
+                <a href="{{ path('createComment',{'id':publication.id}) }}">{{ publication.comments|length }}comments</a><br>
+            {% endfor %}
+        {% endif %}
+
+    {% endblock %}
+{% endblock %}
+
